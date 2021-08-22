@@ -3,6 +3,15 @@
     "description": "Use auto generated UUID slugs to identify and retrieve your Eloquent models.",
     "type": "library",
     "license": "MIT",
+    "keywords": [
+        "laravel",
+        "uuid",
+        "slug",
+        "package",
+        "route",
+        "model",
+        "binding"
+    ],
     "autoload": {
         "psr-4": {
             "Khalyomede\\EloquentUuidSlug\\": "src/"

@@ -25,7 +25,6 @@
         "orchestra/testbench": "6.20.0",
         "nunomaduro/collision": "5.8.0",
         "phpstan/phpstan": "0.12.96",
-        "infection/infection": "0.24.0",
         "friendsofphp/php-cs-fixer": "^3.0",
         "thibautselingue/local-php-security-checker-installer": "1.0.3"
     },

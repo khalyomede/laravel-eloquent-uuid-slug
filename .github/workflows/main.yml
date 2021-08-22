@@ -33,18 +33,15 @@ jobs:
 
       - name: Test (PHP latest)
         run: docker-compose run --rm composer run test
-        
-      - name: Test (PHP 7.4)
-        run: docker-compose run --rm composer74 run test
 
       - name: Static analysis
         run: docker-compose run --rm composer run analyse
-        
+
       - name: Formatting
         run: docker-compose run --rm composer run lint
-        
+
       - name: Package security
         run: docker-compose run --rm composer run check
-        
+
       - name: Package version check
         run: docker-compose run --rm composer outdated --direct

@@ -26,14 +26,14 @@ Route::get("/cart/{cart}", function(Cart $cart) {
 });
 
 // --> What happens behind the scene
-Route::get("/product/{cart}", function(string $identifier) {
-  $product = Cart::findOrFail($identifier);
+Route::get("/cart/{cart}", function(string $identifier) {
+  $cart = Cart::findOrFail($identifier);
 
-  // $product ready to be used
+  // $cart ready to be used
 });
 ```
 
-This means if you offer the possibility to view your product, you will expose the route _/cart/12_ for example. This is not ideal in terms of security because you now expose your cart database identifier, and if you forgot or made a mistake into your cart's [policy](https://laravel.com/docs/8.x/authorization#creating-policies), a malicious user can access the cart of other users (_/cart/41_).
+This means if you offer the possibility to view your cart, you will expose the route _/cart/12_ for example. This is not ideal in terms of security because you now expose your cart database identifier, and if you forgot or made a mistake into your cart's [policy](https://laravel.com/docs/8.x/authorization#creating-policies), a malicious user can access the cart of other users (_/cart/41_).
 
 In this context UUID are very useful because:
 - They offer a good way to create random, hard to predict identifiers

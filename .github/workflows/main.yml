@@ -27,7 +27,9 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: Install
-        run: docker-compose run --rm composer install
+        run: |
+          docker-compose run --rm composer install\
+          docker-compose run --rm composer run install-checker
 
       - name: Test
         run: docker-compose run --rm composer run test

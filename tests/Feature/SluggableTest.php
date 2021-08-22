@@ -4,6 +4,7 @@ namespace Tests\Feature;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
+use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Route;
 use Ramsey\Uuid\Uuid;
 use Tests\Models\Cart;
@@ -67,7 +68,8 @@ final class SluggableTest extends TestCase
         $product = Product::factory()
             ->create();
 
-        Route::get('/product/{product}', fn (Product $product) => $product->name)
+        // Text plain response to avoid faker generated names that might contain entity encodable character, which would force to decode them down the test.
+        Route::get('/product/{product}', fn (Product $product) => Response::make($product->name, 200, ['Content-Type' => 'text/plain']))
             ->middleware("bindings");
 
         $this->get("/product/{$product->slug}")
@@ -83,7 +85,8 @@ final class SluggableTest extends TestCase
         $cart = Cart::factory()
             ->create();
 
-        Route::get('/cart/{cart}', fn (Cart $cart) => $cart->name)
+        // Text plain response to avoid faker generated names that might contain entity encodable character, which would force to decode them down the test.
+        Route::get('/cart/{cart}', fn (Cart $cart) => Response::make($cart->name, 200, ['Content-Type' => 'text/plain']))
             ->middleware("bindings");
 
         $this->get("/cart/{$cart->code}")

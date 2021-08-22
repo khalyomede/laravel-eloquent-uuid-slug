@@ -1,0 +1,43 @@
+{
+    "name": "khalyomede/laravel-eloquent-uuid-slug",
+    "description": "Use auto generated UUID slugs to identify and retrieve your Eloquent models.",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Khalyomede\\EloquentUuidSlug\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests",
+            "Tests\\Database\\Factories\\": "tests/database/factories"
+        }
+    },
+    "authors": [
+        {
+            "name": "Khalyomede",
+            "email": "khalyomede@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require-dev": {
+        "orchestra/testbench": "6.20.0",
+        "nunomaduro/collision": "5.8.0",
+        "phpstan/phpstan": "0.12.96",
+        "infection/infection": "0.24.0",
+        "friendsofphp/php-cs-fixer": "^3.0",
+        "thibautselingue/local-php-security-checker-installer": "1.0.3"
+    },
+    "scripts": {
+        "test": "testbench package:test",
+        "analyse": "phpstan analyse",
+        "lint": "php-cs-fixer fix --diff --using-cache=no --allow-risky=yes --dry-run",
+        "format": "php-cs-fixer --using-cache=no --allow-risky=yes fix",
+        "install-checker": "local-php-security-checker-installer",
+        "check": "local-php-security-checker"
+    },
+    "require": {
+        "laravel/framework": "8.*"
+    }
+}

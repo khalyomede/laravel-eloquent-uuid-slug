@@ -8,6 +8,7 @@
 - [Installation](#installation)
 - [Examples](#examples)
 - [Compatibility table](#compatibility-table)
+- [Alternatives](#alternatives)
 - [Tests](#tests)
 
 ## About
@@ -264,6 +265,10 @@ The table below shows the compatibility across Laravel, PHP and this package **c
 |             7.x |           * |      ❌     |
 
 To counter-check these results, you can use the Docker containers (see _docker-compose.yml_ file) to run the tests described in the [Tests](#tests) section.
+
+## Alternatives
+
+I created this package mostly to practice creating a tested laravel package, and toying with my first Github Workflow. There is some [others high quality packages](https://packagist.org/?query=laravel%20uuid) out there so make sure to take a look at them!
 
 ## Tests
 

@@ -27,4 +27,19 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: Install
-        run: docker-compose run --rm composer run install
+        run: docker-compose run --rm composer install
+
+      - name: Test
+        run: docker-compose run --rm composer run test
+
+      - name: Static analysis
+        run: docker-compose run --rm composer run analyse
+        
+      - name: Formatting
+        run: docker-compose run --rm composer run lint
+        
+      - name: Package security
+        run: docker-compose run --rm composer run check
+        
+      - name: Package version check
+        run: docker-compose run --rm composer outdated --direct

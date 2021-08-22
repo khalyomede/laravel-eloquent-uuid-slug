@@ -66,7 +66,7 @@ The goal of this package is to simplify at best this task for you.
 ### 1. Install the package
 
 ```bash
-composer require khalyomede/laravel-eloquent-uuid-sluggable
+composer require khalyomede/laravel-eloquent-uuid-slug
 ```
 
 ### 2. Setup your model

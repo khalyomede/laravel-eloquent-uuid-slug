@@ -278,5 +278,5 @@ composer run test
 composer run analyse
 composer run check
 composer run lint
-composer outdated --direct
+composer run updates
 ```

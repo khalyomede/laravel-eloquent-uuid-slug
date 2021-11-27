@@ -44,7 +44,8 @@
         "lint": "php-cs-fixer fix --diff --using-cache=no --allow-risky=yes --dry-run",
         "format": "php-cs-fixer --using-cache=no --allow-risky=yes fix",
         "install-checker": "local-php-security-checker-installer",
-        "check": "local-php-security-checker"
+        "check": "local-php-security-checker",
+        "updates": "composer outdated --strict --direct"
     },
     "require": {
         "laravel/framework": "8.*"

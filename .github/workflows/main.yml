@@ -44,4 +44,4 @@ jobs:
         run: docker-compose run --rm composer run check
 
       - name: Package version check
-        run: docker-compose run --rm composer outdated --direct
+        run: docker-compose run --rm composer run updates

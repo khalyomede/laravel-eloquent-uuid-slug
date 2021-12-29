@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.2.0] 2021-12-29
+
+### Added
+
+- Support for PHP 8.1 ([#5](https://github.com/khalyomede/laravel-eloquent-uuid-slug/issues/5)).
+
 ## [0.1.0] 2021-08-22
 
 ### Added

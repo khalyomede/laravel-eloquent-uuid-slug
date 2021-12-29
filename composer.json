@@ -32,10 +32,10 @@
     ],
     "minimum-stability": "stable",
     "require-dev": {
-        "orchestra/testbench": "6.20.0",
-        "nunomaduro/collision": "5.8.0",
-        "phpstan/phpstan": "0.12.96",
-        "friendsofphp/php-cs-fixer": "3.1.0",
+        "orchestra/testbench": "6.23.2",
+        "nunomaduro/collision": "5.10.0",
+        "phpstan/phpstan": "1.3.0",
+        "friendsofphp/php-cs-fixer": "3.4.0",
         "thibautselingue/local-php-security-checker-installer": "1.0.3"
     },
     "scripts": {

@@ -3,6 +3,7 @@
 namespace Khalyomede\EloquentUuidSlug;
 
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Schema\ColumnDefinition;
 use Ramsey\Uuid\Uuid;
@@ -28,6 +29,11 @@ trait Sluggable
         return $this->slugColumn();
     }
 
+    /**
+     * @param Builder<Model> $query
+     *
+     * @return Builder<Model>
+     */
     public function scopeWithSlug(Builder $query, string $slug): Builder
     {
         return $query->where($this->slugColumn(), $slug);

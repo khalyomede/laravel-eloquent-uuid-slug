@@ -259,11 +259,13 @@ The table below shows the compatibility across Laravel, PHP and this package **c
 
 | Laravel version | PHP version | Compatible |
 |-----------------|-------------|------------|
-|             8.* |       8.1.* |      ✅     |
-|             8.* |       8.0.* |      ✅     |
-|             8.* |       7.4.* |      ❌     |
-|             8.* |       7.3.* |      ❌     |
-|             7.x |           * |      ❌     |
+| 9.*             | 8.1.*       | ✅          |
+| 9.*             | 8.0.*       | ✅          |
+| 8.*             | 8.1.*       | ✅          |
+| 8.*             | 8.0.*       | ✅          |
+| 8.*             | 7.4.*       | ❌          |
+| 8.*             | 7.3.*       | ❌          |
+| 7.x             | *           | ❌          |
 
 To counter-check these results, you can use the Docker containers (see _docker-compose.yml_ file) to run the tests described in the [Tests](#tests) section.
 

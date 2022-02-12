@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Support for Laravel 9 ([#7](https://github.com/khalyomede/laravel-eloquent-uuid-slug/issues/7)).
+
 ## [0.2.0] 2021-12-29
 
 ### Added

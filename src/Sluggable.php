@@ -39,6 +39,16 @@ trait Sluggable
         return $query->where($this->slugColumn(), $slug);
     }
 
+    public static function findBySlug(string $slug): ?self
+    {
+        return self::withSlug($slug)->first();
+    }
+
+    public static function findBySlugOrFail(string $slug): self
+    {
+        return self::withSlug($slug)->firstOrFail();
+    }
+
     public static function addSlugColumn(Blueprint $table): ColumnDefinition
     {
         $instance = new static();

@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Routing\Middleware\SubstituteBindings;
@@ -116,5 +117,32 @@ final class SluggableTest extends TestCase
 
         $this->assertEquals($cart->id, $found);
         $this->assertNull($notFound);
+    }
+
+    public function testItCanFindModelBySlug(): void
+    {
+        $cart = Cart::factory()
+            ->create();
+
+        self::assertNull(Cart::findBySlug($this->faker->slug()));
+        self::assertInstanceOf(Cart::class, Cart::findBySlug($cart->code));
+    }
+
+    public function testItCanFindModelBySlugOrThrowsException(): void
+    {
+        $code = $this->faker->slug();
+
+        Cart::factory()
+            ->create([
+                "code" => $code,
+            ]);
+
+        $cart = Cart::findBySlugOrFail($code);
+
+        self::assertEquals($code, $cart->code);
+
+        $this->expectException(ModelNotFoundException::class);
+
+        Cart::findBySlugOrFail($this->faker->slug());
     }
 }

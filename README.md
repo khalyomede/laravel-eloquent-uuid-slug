@@ -253,6 +253,22 @@ Route::get("/cart/{cart}", function(string $identifier) {
 });
 ```
 
+The `Sluggable::findBySlug()` and `Sluggable::findBySlugOrFail()` methods also exist as a shorthand:
+
+```php
+// routes/web.php
+
+use App\Models\Cart;
+use Illuminate\Support\Facades\Route;
+
+Route::get("/cart/{cart}", function(string $identifier) {
+  $cart = Cart::findBySlugOrFail($identifier);
+  $cart = Cart::findBySlug($identifier);
+
+  // $cart ready to be used
+});
+```
+
 ## Compatibility table
 
 The table below shows the compatibility across Laravel, PHP and this package **current version**. For the compatibility regarding this package previous version, please browse another tag.

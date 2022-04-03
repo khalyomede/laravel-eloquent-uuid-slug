@@ -117,6 +117,35 @@ final class CreateCartsTable extends Migration
 }
 ```
 
+If you do not want the `Sluggable::addSlugColumn(Blueprint)` to add SQL constraints (unique index and non nullable column), use its counterpart method `Sluggable::addUnconstrainedSlugColumn(Blueprint)`.
+
+```php
+use App\Models\Cart;
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+final class CreateCartsTable extends Migration
+{
+  public function up(): void
+  {
+    Schema::create('carts', function (Blueprint $table): void {
+      $table->id();
+      $table->string('name');
+
+      Cart::addUnconstrainedSlugColumn($table);
+
+      $table->timestamps();
+    });
+  }
+
+  public function down(): void
+  {
+    Schema::drop('carts');
+  }
+}
+```
+
 ## Examples
 
 - [1. Configure the slug column name](#1-configure-the-slug-column-name)
@@ -124,6 +153,7 @@ final class CreateCartsTable extends Migration
 - [3. Custom route model binding for specific routes](#3-custom-route-model-binding-for-specific-routes)
 - [4. Customize the slug column in your migration](#4-customize-the-slug-column-in-your-migration)
 - [5. Retreive a model by its slug](#5-retreive-a-model-by-its-slug)
+- [6. Dropping the slug column](#6-dropping-the-slug-column)
 
 ### 1. Configure the slug column name
 
@@ -267,6 +297,39 @@ Route::get("/cart/{cart}", function(string $identifier) {
 
   // $cart ready to be used
 });
+```
+
+### 6. Dropping the slug column
+
+You can use `Sluggable::dropSlugColumn(Blueprint)` when you want to drop only the slug column on an existing table. Please follow the complete instructions on the "down" method since there is some gotchas to deal with.
+
+```php
+use App\Models\Cart;
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+final class DropSlugColumnOnCartsTable extends Migration
+{
+  public function up(): void
+  {
+    Schema::create('carts', function (Blueprint $table): void {
+      Cart::dropSlugColumn($table);
+    });
+  }
+
+  public function down(): void
+  {
+    Schema::table('posts', function (Blueprint $table): void {
+      Cart::addUnconstrainedSlugColumn($table);
+    });
+
+    Schema::table('posts', function (Blueprint $table): void {
+      Cart::fillEmptySlugs();
+      Cart::constrainSlugColumn($table);
+    });
+  }
+}
 ```
 
 ## Compatibility table

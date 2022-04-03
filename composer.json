@@ -36,7 +36,8 @@
         "nunomaduro/collision": "6.1.0",
         "friendsofphp/php-cs-fixer": "3.6.0",
         "thibautselingue/local-php-security-checker-installer": "1.0.3",
-        "nunomaduro/larastan": "2.0.1"
+        "nunomaduro/larastan": "2.0.1",
+        "doctrine/dbal": "3.3.4"
     },
     "scripts": {
         "test": "testbench package:test",

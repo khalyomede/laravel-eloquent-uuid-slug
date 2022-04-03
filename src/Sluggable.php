@@ -4,8 +4,10 @@ namespace Khalyomede\EloquentUuidSlug;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Schema\ColumnDefinition;
+use Illuminate\Support\Fluent;
 use Ramsey\Uuid\Uuid;
 
 trait Sluggable
@@ -55,6 +57,70 @@ trait Sluggable
 
         return $table->uuid($instance->slugColumn())
             ->unique();
+    }
+
+    public static function addUnconstrainedSlugColumn(Blueprint $table): ColumnDefinition
+    {
+        $instance = new static();
+        $column = $instance->slugColumn();
+
+        return $table->uuid($column)
+            ->nullable();
+    }
+
+    public static function constrainSlugColumn(BluePrint $table): ColumnDefinition
+    {
+        $instance = new static();
+
+        return $table->uuid($instance->slugColumn())
+            ->unique()
+            ->change();
+    }
+
+    /**
+     * @return Fluent<int, ColumnDefinition>
+     */
+    public static function dropSlugIndex(Blueprint $table): Fluent
+    {
+        $instance = new static();
+
+        return $table->dropUnique([$instance->slugColumn()]);
+    }
+
+    /**
+     * @return Fluent<int, ColumnDefinition>
+     */
+    public static function dropSlugColumn(Blueprint $table): Fluent
+    {
+        $instance = new static();
+
+        // $table->dropUnique([$instance->slugColumn()]);
+
+        return $table->dropColumn($instance->slugColumn());
+    }
+
+    public static function fillEmptySlugs(): void
+    {
+        $instance = new static();
+        $column = $instance->slugColumn();
+
+        /** @phpstan-ignore-next-line Models without SoftDeletes trait will raise an issue. */
+        $query = $instance instanceof SoftDeletes
+            ? $instance->withTrashed()
+            : $instance->query();
+
+        $query->whereNull($column)
+            ->get()
+            ->each(function (Model $model) use ($instance, $column): mixed {
+                /** @phpstan-ignore-next-line */
+                if (!$model instanceof Sluggable) {
+                    return null;
+                }
+
+                /** @phpstan-ignore-next-line */
+                $model->{$column} = $instance->getNewSlug();
+                $model->saveQuietly();
+            });
     }
 
     protected static function booted(): void

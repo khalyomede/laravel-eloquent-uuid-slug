@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - New `Sluggable::findBySlug(string)` and `Sluggable::findBySlugOrFail(string)` methods ([#10](https://github.com/khalyomede/laravel-eloquent-uuid-slug/issues/10)).
+- New `Sluggable::dropSlugColumn(Blueprint)`, `Sluggable::addUnconstrainedSlugColumn(Blueprint)` and `Sluggable::fillEmptySlugs()` methods ([#2]).
 
 
 ## [0.3.0] 2022-02-12

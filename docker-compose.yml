@@ -1,13 +1,5 @@
 version: "3"
 services:
-  composer80:
-    build: ./docker/php/8.0
-    entrypoint: composer
-    volumes:
-      - .:/home/www-data
-      - ./docker/php/custom.ini:/usr/local/etc/php/conf.d/custom.ini
-    working_dir: /home/www-data
-
   composer:
     build: ./docker/php/8.1
     entrypoint: composer

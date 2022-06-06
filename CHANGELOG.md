@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- New `Khalyomede\EloquentUuidSlug\Rules\ExistsBySlug` validation rule ([#14](https://github.com/khalyomede/laravel-eloquent-uuid-slug/issues/14)).
+
 ### Breaking
 
 - Dropped support for PHP 8.0 since [symfony/console](https://github.com/symfony/console) bumped their minimum version to PHP 8.1, and [laravel/framework](https://github.com/laravel/framework) requires this package, new Laravel installation will not work with PHP 8.0 anymore.

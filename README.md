@@ -154,6 +154,7 @@ final class CreateCartsTable extends Migration
 - [4. Customize the slug column in your migration](#4-customize-the-slug-column-in-your-migration)
 - [5. Retreive a model by its slug](#5-retreive-a-model-by-its-slug)
 - [6. Dropping the slug column](#6-dropping-the-slug-column)
+- [7. Validate a value exists by slug](#7-validate-a-value-exists-by-slug)
 
 ### 1. Configure the slug column name
 
@@ -328,6 +329,38 @@ final class DropSlugColumnOnCartsTable extends Migration
       Cart::fillEmptySlugs();
       Cart::constrainSlugColumn($table);
     });
+  }
+}
+```
+
+### 7. Validate a value exists by slug
+
+You can validate a model exists by the slug column you defined. This is equivalent to calling the existing "exists" rule:
+
+```php
+"post_id" => "exists:posts,slug"
+```
+
+But without having to manually specify the slug column (it is fetched automatically according to wether you customized the name or not).
+
+```php
+// app/Http/Controllers/PostController.php
+
+namespace App\Http\Controllers;
+
+use App\Models\Post;
+use Illuminate\Support\Facades\Validator;
+use Khalyomede\EloquentUuidSlug\Rules\ExistsBySlug;
+
+class PostController extends Controller
+{
+  public function store(Request $request)
+  {
+    $validator = Validator::make($request->all(), [
+      "post_id" => ["required", new ExistsBySlug(Post::class)],
+    ]);
+
+    // ...
   }
 }
 ```

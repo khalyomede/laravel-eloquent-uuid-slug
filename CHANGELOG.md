@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.5.0] 2022-06-06
+
 ### Added
 
 - New `Khalyomede\EloquentUuidSlug\Rules\ExistsBySlug` validation rule ([#14](https://github.com/khalyomede/laravel-eloquent-uuid-slug/issues/14)).

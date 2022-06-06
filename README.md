@@ -339,9 +339,9 @@ The table below shows the compatibility across Laravel, PHP and this package **c
 | Laravel version | PHP version | Compatible |
 |-----------------|-------------|------------|
 | 9.*             | 8.1.*       | ✅          |
-| 9.*             | 8.0.*       | ✅          |
+| 9.*             | 8.0.*       | ❌          |
 | 8.*             | 8.1.*       | ✅          |
-| 8.*             | 8.0.*       | ✅          |
+| 8.*             | 8.0.*       | ❌          |
 | 8.*             | 7.4.*       | ❌          |
 | 8.*             | 7.3.*       | ❌          |
 | 7.x             | *           | ❌          |

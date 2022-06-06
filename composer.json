@@ -32,12 +32,12 @@
     ],
     "minimum-stability": "stable",
     "require-dev": {
-        "orchestra/testbench": "7.0.0",
-        "nunomaduro/collision": "6.1.0",
-        "friendsofphp/php-cs-fixer": "3.6.0",
+        "orchestra/testbench": "7.5.0",
+        "nunomaduro/collision": "6.2.0",
+        "friendsofphp/php-cs-fixer": "3.8.0",
         "thibautselingue/local-php-security-checker-installer": "1.0.3",
-        "nunomaduro/larastan": "2.0.1",
-        "doctrine/dbal": "3.3.4"
+        "nunomaduro/larastan": "2.1.8",
+        "doctrine/dbal": "3.3.6"
     },
     "scripts": {
         "test": "testbench package:test",

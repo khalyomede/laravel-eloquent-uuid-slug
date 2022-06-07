@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.6.0] 2022-06-07
+
 ### Breaking
 
 - The `Sluggable` trait does not exploits the `booted` method anymore. Tt uses `bootSluggable` now ([#18](https://github.com/khalyomede/laravel-eloquent-uuid-slug/issues/18)).

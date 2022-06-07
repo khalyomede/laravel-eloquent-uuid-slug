@@ -56,7 +56,6 @@ The goal of this package is to simplify at best this task for you.
 
 - This package relies on these methods **on your model**, and if you override them the logic might not be guarranteed to keep working:
   - [`public function getRouteKeyName()`](https://laravel.com/docs/8.x/routing#customizing-the-default-key-name)
-  - [`protected static function booted()`](https://laravel.com/docs/8.x/eloquent#defining-observers) (for the _creating_ event)
 
 ## Installation
 

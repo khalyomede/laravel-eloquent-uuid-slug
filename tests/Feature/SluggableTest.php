@@ -145,4 +145,17 @@ final class SluggableTest extends TestCase
 
         Cart::findBySlugOrFail($this->faker->slug());
     }
+
+    public function testCanReplicateSluggable(): void
+    {
+        $cart = Cart::factory()
+            ->create();
+
+        $newCart = $cart->replicate();
+        $newCart->save();
+
+        self::assertNotEquals($cart->id, $newCart->id);
+        self::assertNotEquals($cart->code, $newCart->code);
+        self::assertEquals($cart->name, $newCart->name);
+    }
 }

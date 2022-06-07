@@ -41,6 +41,16 @@ trait Sluggable
         return $query->where($this->slugColumn(), $slug);
     }
 
+    /**
+     * Overriding Laravel's default.
+     *
+     * @param array<string>|null $except
+     */
+    public function replicate(array $except = null)
+    {
+        return parent::replicate(array_merge($except ?? [], [$this->slugColumn()]));
+    }
+
     public static function findBySlug(string $slug): ?self
     {
         return self::withSlug($slug)->first();

@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.5.1] 2022-06-07
+
 ### Fixed
 
 - You can now call `$model->replicate()` without this method call raising an exception ([#15](https://github.com/khalyomede/laravel-eloquent-uuid-slug/issues/15)).

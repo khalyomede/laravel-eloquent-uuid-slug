@@ -43,6 +43,8 @@ trait Sluggable
 
     /**
      * Overriding Laravel's default.
+     *
+     * @param array<string>|null $except
      */
     public function replicate(array $except = null)
     {

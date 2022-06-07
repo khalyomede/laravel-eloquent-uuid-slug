@@ -133,7 +133,7 @@ trait Sluggable
             });
     }
 
-    protected static function booted(): void
+    protected static function bootSluggable(): void
     {
         static::creating(function (self $model): void {
             $slugColumn = $model->slugColumn();

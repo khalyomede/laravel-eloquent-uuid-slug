@@ -35,7 +35,6 @@
         "orchestra/testbench": "7.5.0",
         "nunomaduro/collision": "6.2.0",
         "friendsofphp/php-cs-fixer": "3.8.0",
-        "thibautselingue/local-php-security-checker-installer": "1.0.3",
         "nunomaduro/larastan": "2.1.8",
         "doctrine/dbal": "3.3.6"
     },
@@ -44,8 +43,7 @@
         "analyse": "phpstan analyse",
         "lint": "php-cs-fixer fix --diff --using-cache=no --allow-risky=yes --dry-run",
         "format": "php-cs-fixer --using-cache=no --allow-risky=yes fix",
-        "install-checker": "local-php-security-checker-installer",
-        "check": "local-php-security-checker",
+        "check": "composer audit --locked --no-dev",
         "updates": "composer outdated --strict --direct"
     },
     "require": {

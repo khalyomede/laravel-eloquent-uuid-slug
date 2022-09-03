@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "0ba205942519c7954bc2f99e0107fc13",
+    "content-hash": "a67c45f8fce2a09ad3895420e1f55ab2",
     "packages": [
         {
             "name": "brick/math",
@@ -8818,49 +8818,6 @@
                 }
             ],
             "time": "2021-07-28T10:34:58+00:00"
-        },
-        {
-            "name": "thibautselingue/local-php-security-checker-installer",
-            "version": "v1.0.3",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/thislg/local-php-security-checker-installer.git",
-                "reference": "5dc58b19ba58827dc599bcd9188fb764d200db1d"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/thislg/local-php-security-checker-installer/zipball/5dc58b19ba58827dc599bcd9188fb764d200db1d",
-                "reference": "5dc58b19ba58827dc599bcd9188fb764d200db1d",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3"
-            },
-            "bin": [
-                "bin/local-php-security-checker-installer"
-            ],
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-main": "1.0.x-dev"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Thibaut Selingue",
-                    "email": "thibaut.selingue@gmail.com"
-                }
-            ],
-            "description": "Composer integration for local PHP security check",
-            "support": {
-                "issues": "https://github.com/thislg/local-php-security-checker-installer/issues",
-                "source": "https://github.com/thislg/local-php-security-checker-installer/tree/v1.0.3"
-            },
-            "time": "2021-02-22T18:10:31+00:00"
         },
         {
             "name": "zbateson/mail-mime-parser",

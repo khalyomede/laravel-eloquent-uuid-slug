@@ -32,11 +32,11 @@
     ],
     "minimum-stability": "stable",
     "require-dev": {
-        "orchestra/testbench": "7.5.0",
-        "nunomaduro/collision": "6.2.0",
-        "friendsofphp/php-cs-fixer": "3.8.0",
-        "nunomaduro/larastan": "2.1.8",
-        "doctrine/dbal": "3.3.6"
+        "orchestra/testbench": "7.7.0",
+        "nunomaduro/collision": "6.3.0",
+        "friendsofphp/php-cs-fixer": "3.11.0",
+        "nunomaduro/larastan": "2.2.0",
+        "doctrine/dbal": "3.4.3"
     },
     "scripts": {
         "test": "testbench package:test",

@@ -370,9 +370,11 @@ The table below shows the compatibility across Laravel, PHP and this package **c
 
 | Laravel version | PHP version | Compatible |
 |-----------------|-------------|------------|
-| 9.*             | 8.1.*       | ✅          |
+| 9.*             | 8.2.*       | ✅          |
+| 9.*             | 8.1.*       | ❌          |
 | 9.*             | 8.0.*       | ❌          |
-| 8.*             | 8.1.*       | ✅          |
+| 8.*             | 8.2.*       | ❌          |
+| 8.*             | 8.1.*       | ❌          |
 | 8.*             | 8.0.*       | ❌          |
 | 8.*             | 7.4.*       | ❌          |
 | 8.*             | 7.3.*       | ❌          |
@@ -387,7 +389,6 @@ I created this package mostly to practice creating a tested laravel package, and
 ## Tests
 
 ```bash
-composer run install-checker
 composer run test
 composer run analyse
 composer run check

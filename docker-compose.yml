@@ -1,7 +1,7 @@
 version: "3"
 services:
   composer:
-    build: ./docker/php/8.1
+    build: ./docker/php/8.2
     entrypoint: composer
     volumes:
       - .:/home/www-data

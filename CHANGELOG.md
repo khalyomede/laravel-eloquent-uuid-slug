@@ -7,6 +7,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- New methods `Sluggable::firstBySlug()` and `Sluggable::firstBySlugOrFail()` ([#20](https://github.com/khalyomede/laravel-eloquent-uuid-slug/issues/20)).
+
+### Fixed
+
+- Unable to chain Sluggable scopes after Built-in scopes ([#20](https://github.com/khalyomede/laravel-eloquent-uuid-slug/issues/20)).
+- Unable to call `Sluggable::findBySlug()` nor `Sluggable::findBySlugOrFail()` on HasMany relationship ([#23](https://github.com/khalyomede/laravel-eloquent-uuid-slug/issues/23)).
+
+### Breaked
+
+- If you customized the name of the slug column using `protected function slugColumn()`, change the visibility modifier from `protected` to `public` ([#22](https://github.com/khalyomede/laravel-eloquent-uuid-slug/issues/22)).
+
 ## [0.7.0] 2022-12-10
 
 ### Added

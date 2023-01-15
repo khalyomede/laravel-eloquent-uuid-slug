@@ -283,7 +283,7 @@ Route::get("/cart/{cart}", function(string $identifier) {
 });
 ```
 
-The `Sluggable::findBySlug()` and `Sluggable::findBySlugOrFail()` methods also exist as a shorthand:
+The `Sluggable::findBySlug()`, `Sluggable::findBySlugOrFail()`, `Sluggable::firstBySlug()` or `Sluggable::firstBySlugOrFail()` methods also exist as a shorthand:
 
 ```php
 // routes/web.php
@@ -294,6 +294,8 @@ use Illuminate\Support\Facades\Route;
 Route::get("/cart/{cart}", function(string $identifier) {
   $cart = Cart::findBySlugOrFail($identifier);
   $cart = Cart::findBySlug($identifier);
+  $cart = Cart::where("id", ">=", 1)->firstBySlug($identifier);
+  $cart = Cart::where("id", ">=", 1)->firstBySlugOrFail($identifier);
 
   // $cart ready to be used
 });

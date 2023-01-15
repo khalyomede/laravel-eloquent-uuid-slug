@@ -4,6 +4,7 @@ namespace Tests\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Khalyomede\EloquentUuidSlug\Sluggable;
 use Tests\Database\Factories\ProductFactory;
 
@@ -18,6 +19,14 @@ final class Product extends Model
     use Sluggable;
 
     protected $guarded = [];
+
+    /**
+     * @return HasMany<Rating>
+     */
+    public function ratings(): HasMany
+    {
+        return $this->hasMany(Rating::class);
+    }
 
     protected function slugWithDashes(): bool
     {

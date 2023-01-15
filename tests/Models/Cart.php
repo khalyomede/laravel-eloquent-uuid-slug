@@ -19,14 +19,14 @@ final class Cart extends Model
 
     protected $guarded = [];
 
+    public function slugColumn(): string
+    {
+        return 'code';
+    }
+
     protected function slugWithDashes(): bool
     {
         return true;
-    }
-
-    protected function slugColumn(): string
-    {
-        return 'code';
     }
 
     protected static function newFactory(): CartFactory

@@ -34,4 +34,6 @@ return static function (RectorConfig $rectorConfig): void {
         SetList::EARLY_RETURN,
         SetList::TYPE_DECLARATION,
     ]);
+
+    $rectorConfig->importNames();
 };

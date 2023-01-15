@@ -11,7 +11,9 @@ use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Route;
 use Ramsey\Uuid\Uuid;
 use Tests\Models\Cart;
+use Tests\Models\Post;
 use Tests\Models\Product;
+use Tests\Models\Rating;
 use Tests\TestCase;
 
 final class SluggableTest extends TestCase
@@ -26,6 +28,8 @@ final class SluggableTest extends TestCase
         $product = Product::create(['name' => $name]);
         $product = $product->refresh();
 
+        assert($product instanceof Product);
+
         $this->assertEquals($name, $product->name);
         $this->assertTrue(Uuid::isValid($product->slug));
     }
@@ -38,6 +42,8 @@ final class SluggableTest extends TestCase
         $product = Product::create(['slug' => $slug, 'name' => $name]);
         $product = $product->refresh();
 
+        assert($product instanceof Product);
+
         $this->assertEquals($slug, $product->slug);
         $this->assertEquals($name, $product->name);
     }
@@ -49,6 +55,8 @@ final class SluggableTest extends TestCase
 
         $cart = Cart::create(['code' => $code, 'name' => $name]);
         $cart = $cart->refresh();
+
+        assert($cart instanceof Cart);
 
         $this->assertEquals($code, $cart->code);
         $this->assertEquals($name, $cart->name);
@@ -90,33 +98,35 @@ final class SluggableTest extends TestCase
 
     public function testItCanGetModelBySlugUsingScope(): void
     {
-        /**
-         * @var Product
-         */
         $product = Product::factory()
             ->create();
 
-        $found = Product::withSlug($product->slug)->firstOrFail()->id;
+        assert($product instanceof Product);
+
+        $found = Product::withSlug($product->slug)->firstOrFail();
+
+        assert($found instanceof Product);
 
         $notFound = Product::withSlug($this->faker->slug())->first();
 
-        $this->assertEquals($product->id, $found);
+        $this->assertEquals($product->id, $found->id);
         $this->assertNull($notFound);
     }
 
     public function testItCanGetModelBySlugUsingScopeWithCustomSlugColumnName(): void
     {
-        /**
-         * @var Cart
-         */
         $cart = Cart::factory()
             ->create();
 
-        $found = Cart::withSlug($cart->code)->firstOrFail()->id;
+        assert($cart instanceof Cart);
+
+        $found = Cart::withSlug($cart->code)->firstOrFail();
+
+        assert($found instanceof Cart);
 
         $notFound = Cart::withSlug($this->faker->slug())->first();
 
-        $this->assertEquals($cart->id, $found);
+        $this->assertEquals($cart->id, $found->id);
         $this->assertNull($notFound);
     }
 
@@ -140,6 +150,8 @@ final class SluggableTest extends TestCase
 
         $cart = Cart::findBySlugOrFail($code);
 
+        assert($cart instanceof Cart);
+
         self::assertEquals($code, $cart->code);
 
         $this->expectException(ModelNotFoundException::class);
@@ -158,5 +170,107 @@ final class SluggableTest extends TestCase
         self::assertNotEquals($cart->id, $newCart->id);
         self::assertNotEquals($cart->code, $newCart->code);
         self::assertEquals($cart->name, $newCart->name);
+    }
+
+    public function testFirstBySlugFindsModelIfItExistsBySlug(): void
+    {
+        $product = Product::factory()
+            ->create();
+
+        $found = Product::firstBySlugOrFail($product->slug);
+
+        self::assertTrue($found->is($product));
+    }
+
+    public function testFirstBySlugFindsModelIfItExistsBySlugEvenWhenSlugColumnHasBeenCustomized(): void
+    {
+        $cart = Cart::factory()
+            ->create();
+
+        $found = Cart::firstBySlugOrFail($cart->code);
+
+        self::assertTrue($found->is($cart));
+    }
+
+    public function testChainedFirstBySlugFindsModelIfItExistsBySlug(): void
+    {
+        $product = Product::factory()
+            ->create();
+
+        $found = Product::where("id", ">=", 1)
+            ->firstBySlug($product->slug);
+
+        assert($found instanceof Product);
+
+        self::assertTrue($found->is($product));
+    }
+
+    public function testChainedFirstBySlugFindsModelIfItExistsBySlugEventWhenSlugColumnHasBeenCustomized(): void
+    {
+        $cart = Cart::factory()
+            ->create();
+
+        $found = Cart::where("id", ">=", 1)
+            ->firstBySlug($cart->code);
+
+        assert($found instanceof Cart);
+
+        self::assertTrue($found->is($cart));
+    }
+
+    public function testFirstBySlugReturnsNullIfNoModelsMatchSlug(): void
+    {
+        self::assertNull(Product::firstBySlug($this->faker->uuid()));
+    }
+
+    public function testFirstBySlugReturnsNullIfNoModelsMatchCustomizedSlug(): void
+    {
+        self::assertNull(Cart::firstBySlug($this->faker->uuid()));
+    }
+
+    public function testFindBySlugWorksOnHasManyRelationship(): void
+    {
+        $product = Product::factory()
+            ->has(Rating::factory()->count(3))
+            ->create();
+
+        $firstRating = $product->ratings->first();
+
+        $found = $product->ratings()->findBySlug($firstRating->slug);
+
+        self::assertTrue($found->is($firstRating));
+    }
+
+    public function testFindBySlugReturnsNullOnHasManyRelationshipIfNoModelMatchesTheSlug(): void
+    {
+        $product = Product::factory()
+            ->has(Rating::factory()->count(3))
+            ->create();
+
+        self::assertNull($product->ratings()->findBySlug($this->faker->uuid()));
+    }
+
+    public function testFindBySlugOrFailWorksOnHasManyRelationship(): void
+    {
+        $product = Product::factory()
+            ->has(Rating::factory()->count(3))
+            ->create();
+
+        $firstRating = $product->ratings->first();
+
+        $found = $product->ratings()->findBySlugOrFail($firstRating->slug);
+
+        self::assertTrue($found->is($firstRating));
+    }
+
+    public function testFindBySlugOrFailRaisesExceptionOnHasManyRelationshipIfNoModelsMatchSLug(): void
+    {
+        $this->expectException(ModelNotFoundException::class);
+
+        $product = Product::factory()
+            ->has(Rating::factory()->count(3))
+            ->create();
+
+        $product->ratings()->findBySlugOrFail($this->faker->uuid());
     }
 }

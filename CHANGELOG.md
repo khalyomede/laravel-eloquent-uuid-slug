@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.8.0] - 2023-01-15
+
 ### Added
 
 - New methods `Sluggable::firstBySlug()` and `Sluggable::firstBySlugOrFail()` ([#20](https://github.com/khalyomede/laravel-eloquent-uuid-slug/issues/20)).

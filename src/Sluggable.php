@@ -2,12 +2,12 @@
 
 namespace Khalyomede\EloquentUuidSlug;
 
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Schema\ColumnDefinition;
 use Illuminate\Support\Fluent;
+use Khalyomede\EloquentUuidSlug\Builder\SluggableBuilder;
 use Ramsey\Uuid\Uuid;
 
 trait Sluggable
@@ -31,14 +31,9 @@ trait Sluggable
         return $this->slugColumn();
     }
 
-    /**
-     * @param Builder<Model> $query
-     *
-     * @return Builder<Model>
-     */
-    public function scopeWithSlug(Builder $query, string $slug): Builder
+    public function newEloquentBuilder($query): SluggableBuilder
     {
-        return $query->where($this->slugColumn(), $slug);
+        return new SluggableBuilder($query);
     }
 
     /**
@@ -49,16 +44,6 @@ trait Sluggable
     public function replicate(array $except = null)
     {
         return parent::replicate(array_merge($except ?? [], [$this->slugColumn()]));
-    }
-
-    public static function findBySlug(string $slug): ?self
-    {
-        return self::withSlug($slug)->first();
-    }
-
-    public static function findBySlugOrFail(string $slug): self
-    {
-        return self::withSlug($slug)->firstOrFail();
     }
 
     public static function addSlugColumn(Blueprint $table): ColumnDefinition
@@ -128,6 +113,11 @@ trait Sluggable
             });
     }
 
+    public function slugColumn(): string
+    {
+        return $this->slugColumn;
+    }
+
     protected static function bootSluggable(): void
     {
         static::creating(function (self $model): void {
@@ -137,11 +127,6 @@ trait Sluggable
                 $model->{$slugColumn} = $model->getNewSlug();
             }
         });
-    }
-
-    protected function slugColumn(): string
-    {
-        return $this->slugColumn;
     }
 
     protected function slugWithDashes(): bool

@@ -43,7 +43,7 @@
         "test": "testbench package:test",
         "analyse": "phpstan analyse",
         "lint": "PHP_CS_FIXER_IGNORE_ENV=1 php-cs-fixer fix --diff --using-cache=no --allow-risky=yes --dry-run",
-        "format": "php-cs-fixer --using-cache=no --allow-risky=yes fix",
+        "format": "PHP_CS_FIXER_IGNORE_ENV=1 php-cs-fixer --using-cache=no --allow-risky=yes fix",
         "check": "composer audit --locked --no-dev",
         "updates": "composer outdated --strict --direct",
         "scan": "rector process --dry-run",

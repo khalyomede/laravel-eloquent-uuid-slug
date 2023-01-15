@@ -38,6 +38,9 @@ jobs:
       - name: Formatting
         run: docker-compose run --rm composer run lint
 
+      - name: Modern code check
+        run: docker-compose run --rm composer run scan
+
       - name: Package security
         run: docker-compose run --rm composer run check
 

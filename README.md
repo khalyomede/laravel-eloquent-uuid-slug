@@ -393,6 +393,7 @@ composer run test
 composer run analyse
 composer run check
 composer run lint
+composer run scan
 composer run updates
 ```
 

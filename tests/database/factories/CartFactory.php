@@ -13,7 +13,7 @@ final class CartFactory extends Factory
     protected $model = Cart::class;
 
     /**
-     * @return array<string, mixed>
+     * @return array{name: string}
      */
     public function definition(): array
     {

@@ -36,7 +36,8 @@
         "nunomaduro/collision": "6.4.0",
         "friendsofphp/php-cs-fixer": "3.13.2",
         "nunomaduro/larastan": "2.4.0",
-        "doctrine/dbal": "3.5.3"
+        "doctrine/dbal": "3.5.3",
+        "rector/rector": "0.15.7"
     },
     "scripts": {
         "test": "testbench package:test",
@@ -45,7 +46,9 @@
         "format": "php-cs-fixer --using-cache=no --allow-risky=yes fix",
         "check": "composer audit --locked --no-dev",
         "updates": "composer outdated --strict --direct",
-        "all": "composer run test && composer run analyse && composer run lint && composer run check && composer run updates"
+        "scan": "rector process --dry-run",
+        "modernize": "rector process",
+        "all": "composer run test && composer run analyse && composer run lint && composer run check && composer run scan && composer run updates"
     },
     "require": {
         "laravel/framework": "9.*",

@@ -13,7 +13,7 @@ final class PostFactory extends Factory
     protected $model = Post::class;
 
     /**
-     * @return array<string, mixed>
+     * @return array{title: string}
      */
     public function definition(): array
     {

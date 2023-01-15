@@ -5,6 +5,7 @@ namespace Tests\Feature;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
+use Illuminate\Http\Response as HttpResponse;
 use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Route;
@@ -62,7 +63,7 @@ final class SluggableTest extends TestCase
             ->create();
 
         // Text plain response to avoid faker generated names that might contain entity encodable character, which would force to decode them down the test.
-        Route::get('/product/{product}', fn (Product $product) => Response::make($product->name, 200, ['Content-Type' => 'text/plain']))
+        Route::get('/product/{product}', fn (Product $product): HttpResponse => Response::make($product->name, 200, ['Content-Type' => 'text/plain']))
             ->middleware(SubstituteBindings::class);
 
         $this->get("/product/{$product->slug}")
@@ -79,7 +80,7 @@ final class SluggableTest extends TestCase
             ->create();
 
         // Text plain response to avoid faker generated names that might contain entity encodable character, which would force to decode them down the test.
-        Route::get('/cart/{cart}', fn (Cart $cart) => Response::make($cart->name, 200, ['Content-Type' => 'text/plain']))
+        Route::get('/cart/{cart}', fn (Cart $cart): HttpResponse => Response::make($cart->name, 200, ['Content-Type' => 'text/plain']))
             ->middleware(SubstituteBindings::class);
 
         $this->get("/cart/{$cart->code}")

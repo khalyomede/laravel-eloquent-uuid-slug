@@ -7,19 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 use Khalyomede\EloquentUuidSlug\Sluggable;
 use ReflectionClass;
 
-class ExistsBySlug implements Rule
+final class ExistsBySlug implements Rule
 {
-    /**
-     * @var class-string<Model>
-     */
-    protected string $model;
-
     /**
      * @param class-string<Model> $model
      */
-    public function __construct(string $model)
+    public function __construct(protected string $model)
     {
-        $this->model = $model;
     }
 
     /**
@@ -42,8 +36,6 @@ class ExistsBySlug implements Rule
 
     /**
      * Get the validation error message.
-     *
-     * @return string
      */
     public function message(): string
     {

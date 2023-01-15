@@ -121,12 +121,7 @@ trait Sluggable
 
         $query->whereNull($column)
             ->get()
-            ->each(function (Model $model) use ($instance, $column): mixed {
-                /** @phpstan-ignore-next-line */
-                if (!$model instanceof Sluggable) {
-                    return null;
-                }
-
+            ->each(function (Model $model) use ($instance, $column): void {
                 /** @phpstan-ignore-next-line */
                 $model->{$column} = $instance->getNewSlug();
                 $model->saveQuietly();

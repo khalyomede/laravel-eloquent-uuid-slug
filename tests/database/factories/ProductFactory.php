@@ -13,7 +13,7 @@ final class ProductFactory extends Factory
     protected $model = Product::class;
 
     /**
-     * @return array<string, mixed>
+     * @return array{name: string}
      */
     public function definition(): array
     {

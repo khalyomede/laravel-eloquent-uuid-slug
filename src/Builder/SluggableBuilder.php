@@ -6,10 +6,15 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * @extends Builder<Model>
+ * @template TModelClass of Model
+ *
+ * @extends Builder<TModelClass>
  */
 final class SluggableBuilder extends Builder
 {
+    /**
+     * @return self<TModelClass>
+     */
     public function withSlug(string $slug): self
     {
         /** @phpstan-ignore-next-line Call to an undefined method Illuminate\Database\Eloquent\Model::slugColumn(). */
@@ -18,23 +23,35 @@ final class SluggableBuilder extends Builder
         return $this;
     }
 
-    public function findBySlug(string $slug): ?Model
+    /**
+     * @return ?TModelClass
+     */
+    public function findBySlug(string $slug)
     {
         return $this->firstBySlug($slug);
     }
 
-    public function findBySlugOrFail(string $slug): Model
+    /**
+     * @return TModelClass
+     */
+    public function findBySlugOrFail(string $slug)
     {
         return $this->firstBySlugOrFail($slug);
     }
 
-    public function firstBySlug(string $slug): ?Model
+    /**
+     * @return ?TModelClass
+     */
+    public function firstBySlug(string $slug)
     {
         /** @phpstan-ignore-next-line Call to an undefined method Illuminate\Database\Eloquent\Model::slugColumn(). */
         return $this->where($this->model->slugColumn(), $slug)->first();
     }
 
-    public function firstBySlugOrFail(string $slug): Model
+    /**
+     * @return TModelClass
+     */
+    public function firstBySlugOrFail(string $slug)
     {
         /** @phpstan-ignore-next-line Call to an undefined method Illuminate\Database\Eloquent\Model::slugColumn(). */
         return $this->where($this->model->slugColumn(), $slug)->firstOrFail();

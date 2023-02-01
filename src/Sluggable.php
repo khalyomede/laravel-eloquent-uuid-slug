@@ -31,6 +31,9 @@ trait Sluggable
         return $this->slugColumn();
     }
 
+    /**
+     * @return SluggableBuilder<Model>
+     */
     public function newEloquentBuilder($query): SluggableBuilder
     {
         return new SluggableBuilder($query);

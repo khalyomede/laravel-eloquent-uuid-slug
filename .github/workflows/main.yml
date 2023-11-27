@@ -16,7 +16,7 @@ on:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
-  build:
+  test:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
@@ -46,3 +46,34 @@ jobs:
 
       - name: Package version check
         run: docker-compose run --rm composer run updates
+
+  test_82:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+
+      # Runs a single command using the runners shell
+      - name: Install
+        run: docker-compose run --rm composer82 install
+
+      - name: Test (PHP latest)
+        run: docker-compose run --rm composer82 run test
+
+      - name: Static analysis
+        run: docker-compose run --rm composer82 run analyse
+
+      - name: Formatting
+        run: docker-compose run --rm composer82 run lint
+
+      - name: Modern code check
+        run: docker-compose run --rm composer82 run scan
+
+      - name: Package security
+        run: docker-compose run --rm composer82 run check
+
+      - name: Package version check
+        run: docker-compose run --rm composer82 run updates

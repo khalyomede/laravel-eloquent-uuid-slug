@@ -372,6 +372,7 @@ The table below shows the compatibility across Laravel, PHP and this package **c
 
 | Laravel version | PHP version | Compatible |
 |-----------------|-------------|------------|
+| 10.*            | 8.3.*       | ✅         |
 | 10.*            | 8.2.*       | ✅         |
 | 10.*            | 8.1.*       | ❌         |
 | 9.*             | 8.2.*       | ❌         |

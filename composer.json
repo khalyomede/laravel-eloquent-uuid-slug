@@ -32,13 +32,13 @@
     ],
     "minimum-stability": "stable",
     "require-dev": {
-        "nunomaduro/collision": "7.0.2",
-        "friendsofphp/php-cs-fixer": "3.14.4",
-        "nunomaduro/larastan": "2.4.0",
-        "doctrine/dbal": "3.6.0",
-        "rector/rector": "0.15.15",
-        "orchestra/testbench": "8.0.0",
-        "phpunit/phpunit": "10.0.7"
+        "nunomaduro/collision": "7.10.0",
+        "friendsofphp/php-cs-fixer": "3.40.0",
+        "nunomaduro/larastan": "2.6.4",
+        "doctrine/dbal": "3.7.2",
+        "rector/rector": "0.18.11",
+        "orchestra/testbench": "8.15.0",
+        "phpunit/phpunit": "10.4.2"
     },
     "scripts": {
         "test": "testbench package:test",

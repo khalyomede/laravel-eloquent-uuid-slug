@@ -22,8 +22,6 @@ return static function (RectorConfig $rectorConfig): void {
         StaticCallOnNonStaticToInstanceCallRector::class,
         FirstClassCallableRector::class,
         RemoveNonExistingVarAnnotationRector::class,
-        RemoveLastReturnRector::class,
-        ChangeReadOnlyVariableWithDefaultValueToConstantRector::class,
     ]);
 
     // define sets of rules

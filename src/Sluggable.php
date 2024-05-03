@@ -92,7 +92,7 @@ trait Sluggable
     {
         $instance = new static();
 
-        // $table->dropUnique([$instance->slugColumn()]);
+        $table->dropUnique([$instance->slugColumn()]);
 
         return $table->dropColumn($instance->slugColumn());
     }

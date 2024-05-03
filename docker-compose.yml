@@ -7,11 +7,3 @@ services:
       - .:/home/www-data
       - ./docker/php/custom.ini:/usr/local/etc/php/conf.d/custom.ini
     working_dir: /home/www-data
-
-  composer82:
-    build: ./docker/php/8.2
-    entrypoint: composer
-    volumes:
-      - .:/home/www-data
-      - ./docker/php/custom.ini:/usr/local/etc/php/conf.d/custom.ini
-    working_dir: /home/www-data
